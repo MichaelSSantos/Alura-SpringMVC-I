@@ -29,7 +29,7 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 		return new String[]{"/"};
 	}
 	
-	@Override
+	@Override//encondig -> Codificação
 	protected Filter[] getServletFilters() {
 		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
 		//Definição do mapa de caracteres utilizado pela aplicação. 
