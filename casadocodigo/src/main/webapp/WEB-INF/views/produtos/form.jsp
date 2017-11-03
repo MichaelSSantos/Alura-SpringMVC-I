@@ -30,6 +30,12 @@
 				<form:errors path="paginas" />
 			</div>
 			
+			<div>
+				<label>Data de lançamento:</label>
+				<input name="dataLancamento" />
+				<form:errors path="dataLancamento" />
+			</div>
+			
 			<!-- varStatus tem informação de index -->
 			<c:forEach items="${tipos}" var="tipoPreco" varStatus="status" >
 				<div>
