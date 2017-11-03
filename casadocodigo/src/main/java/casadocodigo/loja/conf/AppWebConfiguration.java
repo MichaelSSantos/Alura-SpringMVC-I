@@ -1,7 +1,9 @@
 package casadocodigo.loja.conf;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -32,4 +34,21 @@ public class AppWebConfiguration {
 		return resolver;
 	}
 	
+	/**
+	 * Método responsável por mapear o arquivo de propriedades do Spring
+	 * */
+	@Bean
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource messageSource 
+			= new ReloadableResourceBundleMessageSource();
+		messageSource.setBasename("/WEB-INF/messages");
+		messageSource.setDefaultEncoding("ISO-8859-1");
+		/*Tempo para que o cache do arquivo de propriedades seja 
+		  limpado sem que haja necessidade de reiniciar o servidor.*/
+		messageSource.setCacheSeconds(1);
+		
+		return messageSource;
+	}
+	
 }
+	

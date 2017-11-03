@@ -21,7 +21,7 @@ import casadocodigo.loja.validation.ProdutoValidation;
 
 @Controller
 //Para o mapeamento "/produtos" usando o método GET, acessamos a lista de produtos e quando acessamos essa mesma URL via POST
-@RequestMapping("produtos")
+@RequestMapping("/produtos")
 public class ProdutosController {
 
 	@Autowired//Serve para que nós não nos preocupemos em criar manualmente o ProdutoDAO no Controller.
