@@ -35,8 +35,11 @@ public class ProdutosController {
 		binder.addValidators(new ProdutoValidation());
 	}
 	
+	/*Passo produto por parâmetro para ficar sob controle do Spring. 
+	Isso é importante para validação, porque se algum campo não for validado e o formulário precisar ser recarregado, 
+	o objeto de produto já estará com alguns campos preenchidos.*/
 	@RequestMapping("/form")
-	public ModelAndView form() {
+	public ModelAndView form(Produto produto) {
 		/*
 		 * Quando utilizamos o ModelAndView, além retornar uma página, 
 		 * temos a possibilidade de enviar objetos de qualquer classe para essas páginas.
@@ -52,7 +55,7 @@ public class ProdutosController {
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView grava(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {//O Spring faz o binding com as propriedades de produto.
 		if(result.hasErrors()) {
-			return form();
+			return form(produto);
 		}
 		produtoDao.grava(produto);
 		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso.");//Informação pendurada no ModelAndView.

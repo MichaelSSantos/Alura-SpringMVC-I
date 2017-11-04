@@ -23,6 +23,8 @@ public class ProdutoValidation implements Validator {
 	 * 			errorCode que também é passado como String, mas que é reconhecido pelo Spring. 
 	 * 			Neste último parâmetro, usaremos o errorCode com o valor "field.required" para 
 	 * 			informar ao Spring que aquele campo é obrigatório.
+	 * 
+	 * Target: objeto alvo.
 	 * */
 	@Override
 	public void validate(Object target, Errors errors) {

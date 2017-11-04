@@ -20,8 +20,8 @@ public class Produto {
 	private String descricao;
 	private int paginas;
 	
-	//Se não for informado o padrão de data, então o padrão será yyyy/MM/dd e ocorrerá um erro do bind do formulário par ao controller.
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	//Se não for informado o padrão de data, então o padrão será yyyy/MM/dd e ocorrerá um erro do bind do formulário para o controller.
+	@DateTimeFormat//(pattern="dd/MM/yyyy") O serviço de conversão substitui este atributo.
 	private Calendar dataLancamento;
 	
 	/*A lista de preços não me limita a três preços. Caso exista um preço promocional poderei incluí-lo*/

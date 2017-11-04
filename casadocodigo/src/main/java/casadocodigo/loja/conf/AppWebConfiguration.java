@@ -59,11 +59,14 @@ public class AppWebConfiguration {
 	 * */
 	@Bean
 	public FormattingConversionService mvcConversionService() {
-		//Instância do serviçõ de conversão.
+		//Instância do serviço de conversão.
 		DefaultFormattingConversionService conversionService 
 			= new DefaultFormattingConversionService();
+		//Registrador de formatos.
 		DateFormatterRegistrar registrar = new DateFormatterRegistrar();
+		//Informa o formato de data.
 		registrar.setFormatter(new DateFormatter("dd/MM/yyyy"));
+		//Inclui o registro no serviço de conversão.
 		registrar.registerFormatters(conversionService);
 		
 		return conversionService;
