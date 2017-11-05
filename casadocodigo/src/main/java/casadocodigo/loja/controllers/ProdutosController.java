@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -87,5 +88,18 @@ public class ProdutosController {
 		modelAndView.addObject("produtos", produtos);
 		return modelAndView;
 	}
-
+	
+	/**
+	 * A única forma de utilizar a URL amigável é com a taglib do Spring.
+	 * Ela vai buscar o request detalhe e verificará que existe um @PathVariable, 
+	 * então adicionará no request. 
+	 */
+	@RequestMapping("/detalhe/{id}")
+	public ModelAndView detalhe(@PathVariable("id") Integer id) {
+		ModelAndView modelAndView = new ModelAndView("produtos/detalhe");
+		Produto produto = produtoDao.find(id);
+		modelAndView.addObject("produto", produto);
+		return modelAndView;
+	}
+ 
 }

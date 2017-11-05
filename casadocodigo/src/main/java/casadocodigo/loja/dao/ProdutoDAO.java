@@ -25,5 +25,13 @@ public class ProdutoDAO {
 		//Utilizando TypedQuery e encadeando métodos.
 		return manager.createQuery("select p from Produto p", Produto.class).getResultList();
 	}
+
+	public Produto find(Integer id) {
+		return manager.createQuery("select distinct(p) from Produto p "
+				+ "join fetch p.precos preco where p.id = :id", Produto.class)
+				.setParameter("id", id)
+				.getSingleResult();
+				
+	}
 	
 }
