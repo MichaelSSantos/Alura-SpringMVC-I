@@ -3,9 +3,14 @@ package casadocodigo.loja.models;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 @Component
+//Todo bean gerenciado pelo Spring é um Singleton, ou seja, seu escopo é de aplicação. Todo usuário utiliza a mesma instância.
+//@Scope(value=WebApplicationContext.SCOPE_APPLICATION): Define o escopo do bean como sendo de aplicação, ou seja, para todos os usuários.
+@Scope(value=WebApplicationContext.SCOPE_SESSION)//Contexto de sessão do usuário.
 public class CarrinhoCompras {
 
 	/*Um carrinho é composto por itens. Para cada item, deve-se saber a quantidade a ser comprada.*/
