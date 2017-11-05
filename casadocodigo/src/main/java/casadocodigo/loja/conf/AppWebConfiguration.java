@@ -16,6 +16,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import casadocodigo.loja.controllers.HomeController;
 import casadocodigo.loja.dao.ProdutoDAO;
 import casadocodigo.loja.infra.FileSaver;
+import casadocodigo.loja.models.CarrinhoCompras;
 
 /**
  * Módulo de Web MVC do Spring.
@@ -25,7 +26,7 @@ import casadocodigo.loja.infra.FileSaver;
 //@ComponentScan(basePackages= {"casadocodigo.loja.controllers"})//Informa o pacote dos controllers
 //Informa a classe controller e o Spring MVC irá escanear todos os controllers do pacote da classe informada.
 //O Spring irá escanear todos os controllers e daos.
-@ComponentScan(basePackageClasses= {HomeController.class, ProdutoDAO.class, FileSaver.class})
+@ComponentScan(basePackageClasses= {HomeController.class, ProdutoDAO.class, FileSaver.class, CarrinhoCompras.class})
 public class AppWebConfiguration {
 
 	/**
@@ -38,6 +39,13 @@ public class AppWebConfiguration {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
+		//Todos os beans do escopo do Spring ficarão disponíveis como atributo na JSP.
+//		resolver.setExposeContextBeansAsAttributes(true);
+		//Expõe um bean específico na JSP. Bean este, que está dentro do escopo do Spring. Para que este bean fica disponível na JSP, ele 
+		//deve estar anotado como @Component.
+		//O padrão é o nome da classe com sua primeira em minúsculo, ou seja, a classe CarrinhoCompras fica carrinhoCompras. 
+		resolver.setExposedContextBeanNames("carrinhoCompras");
+		
 		return resolver;
 	}
 	

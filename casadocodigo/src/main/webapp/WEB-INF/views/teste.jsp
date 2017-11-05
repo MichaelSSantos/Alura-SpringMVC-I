@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	<h2>Produto cadastrado com sucesso.</h2>
-	
-	
+
+	<h1>Teste</h1>
+
+
 </body>
 </html>
