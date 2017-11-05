@@ -1,6 +1,8 @@
 package casadocodigo.loja.conf;
 
 import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -36,5 +38,15 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 		//UTF-8 ou ISO-8859-1
 		encodingFilter.setEncoding("ISO-8859-1");
 		return new Filter[] {encodingFilter};
+	}
+	
+	/**
+	 * Registrador de tipos de arquivos.
+	 * new MultipartConfigElement(""): Informa o que deve ser considerado 
+	 * ou desconsiderado do path após o upload do arquivo.
+	 */
+	@Override
+	protected void customizeRegistration(Dynamic registration) {
+		registration.setMultipartConfig(new MultipartConfigElement(""));
 	}
 }

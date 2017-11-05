@@ -13,7 +13,8 @@
 		<%-- commandName="produto": Informa que o objeto dentro do formulário refere-se a um produto. --%>
 		<%-- ${s:mvcUrl('PC#gravar').build()}: Taglib do Spring usada para construir URLs.
 			 PC: Refere-se às iniciais em maiúsculo do controller alvo. --%>
-		<form:form action="${s:mvcUrl('PC#grava').build()}" method="POST" commandName="produto">
+		<%-- enctype="multipart/form-data": Informa ao servidor que o formulário está enviado múltiplos tipos de dados. --%>
+		<form:form action="${s:mvcUrl('PC#grava').build()}" method="POST" commandName="produto" enctype="multipart/form-data">
 			<div>
 				<label>Título:</label>
 				<form:input path="titulo" /><!-- Tag do Spring. O path substitui o name. -->
@@ -44,6 +45,11 @@
 					<form:hidden path="precos[${status.index}].tipo" value="${tipoPreco}" />
 				</div>
 			</c:forEach>
+			
+			<div>
+				<label>Sumário</label>
+				<input type="file" name="sumario" />
+			</div>
 			
 			<button type="submit">Cadastrar</button>
 		</form:form>

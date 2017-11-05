@@ -8,11 +8,14 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import casadocodigo.loja.controllers.HomeController;
 import casadocodigo.loja.dao.ProdutoDAO;
+import casadocodigo.loja.infra.FileSaver;
 
 /**
  * Módulo de Web MVC do Spring.
@@ -22,7 +25,7 @@ import casadocodigo.loja.dao.ProdutoDAO;
 //@ComponentScan(basePackages= {"casadocodigo.loja.controllers"})//Informa o pacote dos controllers
 //Informa a classe controller e o Spring MVC irá escanear todos os controllers do pacote da classe informada.
 //O Spring irá escanear todos os controllers e daos.
-@ComponentScan(basePackageClasses= {HomeController.class, ProdutoDAO.class})
+@ComponentScan(basePackageClasses= {HomeController.class, ProdutoDAO.class, FileSaver.class})
 public class AppWebConfiguration {
 
 	/**
@@ -71,5 +74,14 @@ public class AppWebConfiguration {
 		
 		return conversionService;
 	}
+	
+	/**
+	 * Resolvedor de arquivos de múltiplos formatos.
+	 * */
+	@Bean
+	public MultipartResolver multipartResolver() {
+		return new StandardServletMultipartResolver();
+	}
+	
 }
 	

@@ -28,6 +28,9 @@ public class Produto {
 	@ElementCollection/*Para cada produto existirá lista de precos sem criar tabela precos.*/
 	private List<Preco> precos;
 	
+	/*Para armazenamento de arquivos, o ideal é armazenar o arquivo dentro do servidor e o caminho no bando de dados.*/
+	private String sumarioPath;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -76,4 +79,12 @@ public class Produto {
 		this.dataLancamento = dataLancamento;
 	}
 
+	public String getSumarioPath() {
+		return sumarioPath;
+	}
+
+	public void setSumarioPath(String sumarioPath) {
+		this.sumarioPath = sumarioPath;
+	}
+	
 }
