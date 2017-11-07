@@ -39,10 +39,11 @@ public class AppWebConfiguration {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
-		//Todos os beans do escopo do Spring ficarão disponíveis como atributo na JSP.
-//		resolver.setExposeContextBeansAsAttributes(true);
-		//Expõe um bean específico na JSP. Bean este, que está dentro do escopo do Spring. Para que este bean fica disponível na JSP, ele 
-		//deve estar anotado como @Component.
+		//Todos os beans sob controle do Spring ficarão disponíveis como atributos na JSP.
+		//resolver.setExposeContextBeansAsAttributes(true);
+		
+		//Expõe um bean específico, que está sob controle do Spring, na JSP. 
+		//Para que este bean fica disponível na JSP, ele deve estar anotado como @Component.
 		//O padrão é o nome da classe com sua primeira em minúsculo, ou seja, a classe CarrinhoCompras fica carrinhoCompras. 
 		resolver.setExposedContextBeanNames("carrinhoCompras");
 		

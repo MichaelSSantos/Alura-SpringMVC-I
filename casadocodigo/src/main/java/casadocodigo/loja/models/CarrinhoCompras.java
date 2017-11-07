@@ -1,5 +1,6 @@
 package casadocodigo.loja.models;
 
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -15,6 +16,10 @@ public class CarrinhoCompras {
 
 	/*Um carrinho é composto por itens. Para cada item, deve-se saber a quantidade a ser comprada.*/
 	private Map<CarrinhoItem, Integer> itens = new LinkedHashMap<CarrinhoItem, Integer>();
+	
+	public Collection<CarrinhoItem> getItens(){
+		return itens.keySet();//Retorna um Set com todas as chaves. No Set não existe elementro repitido.
+	}
 	
 	public void add(CarrinhoItem item) {
 		itens.put(item, getQuantidade(item) + 1);
