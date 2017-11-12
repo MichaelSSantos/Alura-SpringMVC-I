@@ -1,5 +1,11 @@
 package casadocodigo.loja.conf;
 
+import java.util.concurrent.TimeUnit;
+
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
+import org.springframework.cache.guava.GuavaCacheManager;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,6 +19,8 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import com.google.common.cache.CacheBuilder;
 
 import casadocodigo.loja.controllers.HomeController;
 import casadocodigo.loja.dao.ProdutoDAO;
@@ -28,6 +36,7 @@ import casadocodigo.loja.models.CarrinhoCompras;
 //Informa a classe controller e o Spring MVC irá escanear todos os controllers do pacote da classe informada.
 //O Spring irá escanear todos os controllers e daos.
 @ComponentScan(basePackageClasses= {HomeController.class, ProdutoDAO.class, FileSaver.class, CarrinhoCompras.class})
+@EnableCaching	
 public class AppWebConfiguration {
 
 	/**
@@ -100,6 +109,21 @@ public class AppWebConfiguration {
 	@Bean
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
+	}
+	
+	/**
+	 * Gerenciador de cache Guava do Google.
+	 */
+	@Bean
+	public CacheManager cacheManager() {
+//		return new ConcurrentMapCacheManager(); Este cache não é recomendado para produção, apenas para desenvolvimento.
+		//Construtor das configurações do cache. O cache guardará até 100 elementos e ficará ativo por 5 minutos.
+		CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder()
+				.maximumSize(100)
+				.expireAfterAccess(1, TimeUnit.DAYS);
+		GuavaCacheManager manager = new GuavaCacheManager();
+		manager.setCacheBuilder(builder);
+		return manager;
 	}
 	
 }

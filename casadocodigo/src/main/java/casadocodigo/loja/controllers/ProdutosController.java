@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -59,6 +60,8 @@ public class ProdutosController {
 	//RedirectAttributes (Flash scope): São atributos levados de um rerquest até outro e depois deixam de existir.
 	//BindingResult: Objeto que retorna as informações de validação. Deve vir após o parâmetro a ser validado.
 	//MultipartFile: Classe do Spring que converte um arquivo enviado pelo formulário em um MultipartFile.
+	//CacheEvict: Paga o cache produtosHome toda vez que a lista de produtos é atualizada. allEntries: Todos os valores.
+	@CacheEvict(value="produtosHome", allEntries=true)
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView grava(MultipartFile sumario, @Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {//O Spring faz o binding com as propriedades de produto.
 		
