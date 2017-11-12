@@ -49,6 +49,7 @@
 				<nav id="main-nav">
 					
 					<ul class="clearfix">
+						<!-- Equivale à /carrinho. Este mapeamento é para o Spring construir um path até o método itens() -->
 						<li><a href="${s:mvcUrl('CCC#itens').build()}" rel="nofollow">Seu carrinho (${carrinhoCompras.quantidade})</a></li>
 
 						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
@@ -109,7 +110,7 @@
 					     <td class="quantity-input-cell"><input type="number" min="0" readonly="readonly" id="quantidade" name="quantidade" value="${carrinhoCompras.getQuantidade(item) }"/></td>
 					     <td class="numeric-cell">${carrinhoCompras.getTotal(item) }</td>
 						 <td class="remove-item">
-						     <form action="" method="post">
+						     <form action="${s:mvcUrl('CCC#remover').arg(0,item.produto.id).arg(1, item.tipoPreco).build()}" method="post">
 							     <input type="image" src="${contextPath }resources/imagens/excluir.png" alt="Excluir" title="Excluir" />
 						     </form>
 					     </td>
@@ -118,7 +119,11 @@
 		      </tbody>
 			      <tfoot>
 			        <tr>
-			          <td colspan="3"><input type="submit" class="checkout" name="checkout" value="Finalizar compra" /></td>
+			          <td colspan="3">
+				          <form action="${s:mvcUrl('PC#finalizar').build() }" method="post">
+				          	<input type="submit" class="checkout" name="checkout" value="Finalizar compra" />
+				          </form>
+			          </td>
 			          <td class="numeric-cell">${carrinhoCompras.total }</td><td></td>
 			        </tr>
 			      </tfoot>

@@ -32,6 +32,13 @@ public class Produto {
 	/*Para armazenamento de arquivos, o ideal é armazenar o arquivo dentro do servidor e o caminho no bando de dados.*/
 	private String sumarioPath;
 	
+	public Produto() {
+	}
+
+	public Produto(Integer produtoId) {
+		this.id = produtoId;
+	}
+
 	public Integer getId() {
 		return id;
 	}

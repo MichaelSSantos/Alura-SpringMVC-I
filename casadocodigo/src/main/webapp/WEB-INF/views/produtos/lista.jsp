@@ -12,6 +12,7 @@
 		<h1>Lista de produtos</h1>
 		
 		<div>${sucesso}</div>
+		<div>${fallha}</div>
 				
 		<table>
 			<tr>
