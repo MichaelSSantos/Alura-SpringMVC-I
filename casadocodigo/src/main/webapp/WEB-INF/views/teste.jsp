@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h1>Teste</h1>
+	<a href="/casadocodigo/teste/detalhe/5"><button>Testar JSON - Produto 5</button></a>
 
 
 </body>

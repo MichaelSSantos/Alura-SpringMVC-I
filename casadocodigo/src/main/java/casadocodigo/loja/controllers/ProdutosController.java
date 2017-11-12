@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -95,7 +96,10 @@ public class ProdutosController {
 	/**
 	 * A única forma de utilizar a URL amigável é com a taglib do Spring.
 	 * Ela vai buscar o request detalhe e verificará que existe um @PathVariable, 
-	 * então adicionará no request. 
+	 * então adicionará no request.
+	 * 
+	 *  Para retornar uma JSP: http://localhost:8080/casadocodigo/produtos/detalhe/{id}
+	 *  Para retornor um JSON: http://localhost:8080/casadocodigo/produtos/detalhe/{id}.json
 	 */
 	@RequestMapping("/detalhe/{id}")
 	public ModelAndView detalhe(@PathVariable("id") Integer id) {
@@ -103,6 +107,18 @@ public class ProdutosController {
 		Produto produto = produtoDao.find(id);
 		modelAndView.addObject("produto", produto);
 		return modelAndView;
+	}
+	
+	/**
+	 * Alternativa quando não se tem um gerenciador de resolvers configurado.
+	 */
+	@RequestMapping("/{id}")
+	/*Informa que o corpo da resposta é o que de fato retorna. Nesta caso um objeto de Produto.
+	 * É o Jackson quem transforma o objeto em JSON. O Spring procura este conversor.
+	 * */
+	@ResponseBody
+	public Produto detalheJson(@PathVariable("id") Integer id) {
+		return produtoDao.find(id);
 	}
  
 }
