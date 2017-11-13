@@ -20,7 +20,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -41,7 +43,7 @@ import casadocodigo.loja.models.CarrinhoCompras;
 //O Spring irá escanear todos os controllers e daos.
 @ComponentScan(basePackageClasses= {HomeController.class, ProdutoDAO.class, FileSaver.class, CarrinhoCompras.class})
 @EnableCaching	
-public class AppWebConfiguration {
+public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 
 	/**
 	 * Resolvedor Interno de Recursos de View: que ajuda o SpringMVC a encontrar as views. 
@@ -148,6 +150,14 @@ public class AppWebConfiguration {
 		resolver.setContentNegotiationManager(manager);//Define qual view resolver irá retornar.
 		
 		return resolver;
+	}
+	
+	/**
+	 * Informa ao Spring que as requisições default serão manipuladas pelo Servlet padrão e não pelo Spring.
+	 */
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+		configurer.enable();
 	}
 	
 }
