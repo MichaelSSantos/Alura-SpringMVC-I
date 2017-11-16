@@ -14,15 +14,17 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  */
 public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+	//Sobe as classes de configuração quando a aplicação for iniciada.
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return null;
+		return new Class[] {SecurityConfiguration.class, AppWebConfiguration.class, JPAConfiguration.class};
 	}
-
+	
+	//Sobe as classes de configuração quando a aplicação for acessada.
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		//Classes de configuração do servlet (esta classe) do SpringMVC.
-		return new Class[] {AppWebConfiguration.class, JPAConfiguration.class, ResourcesConfig.class};
+		return new Class[] {};
 	}
 
 	@Override
