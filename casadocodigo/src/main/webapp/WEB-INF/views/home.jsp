@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<!-- tributo tagdir da diretiva taglib serve para indicar que o arquivo de tags 
+a ser encontrado está em um diretório local e não remoto como é feito com o atributo mais comum, o uri.  -->
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 	
 	<tags:pageTemplate titulo="Livros de Java, Android, iOS, Mobile e muito mais...">

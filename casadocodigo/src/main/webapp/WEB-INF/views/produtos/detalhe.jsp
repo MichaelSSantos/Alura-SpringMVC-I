@@ -5,6 +5,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 	
 <!-- Forma para inclusão de taglibs pessoais. -->
+<!-- tributo tagdir da diretiva taglib serve para indicar que o arquivo de tags 
+a ser encontrado está em um diretório local e não remoto como é feito com o atributo mais comum, o uri.  -->
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 	
 	<tags:pageTemplate titulo="${produto.titulo}">

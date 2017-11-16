@@ -1,3 +1,5 @@
+<%-- Templates são modelos em que uma estrutura base já se encontra pronta e apenas o conteúdo que difere entre as páginas é alterado de forma dinâmica. --%>
+
 <%@ tag language="java" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -5,6 +7,8 @@
 	 required="true" obriga a passagem de uma variável -->
 <%@ attribute name="titulo" required="true" %>
 <%@ attribute name="bodyClass" required="false" %>
+<!-- Declaração de um atributo que receberá um fragmento da página. -->
+<%@ attribute name="extraScripts" fragment="true" %>
 
 <!DOCTYPE html>
 <html>
@@ -42,6 +46,9 @@
 	<jsp:doBody />
 	
 	<%@ include file="/WEB-INF/views/rodape.jsp" %>
+	
+	<!-- Inclusão de fragmento de página. -->
+	<jsp:invoke fragment="extraScripts" />
 	
 	</body>
 </html>
