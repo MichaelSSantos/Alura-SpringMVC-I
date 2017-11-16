@@ -153,13 +153,13 @@
 		    <version>18.0</version>
 		</dependency>
 		
-		<!-- Spring Security -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-context-support</artifactId>
 		    <version>4.1.0.RELEASE</version>
 		</dependency>
 		
+		<!-- Spring Security -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-config</artifactId>
@@ -186,7 +186,7 @@
 		
 	</dependencies>
 	
-	<!-- Repositório do Spring para obter o Spring Security -->
+	<!-- Repositório selecionado do Spring para obter o Spring Security -->
 	<repositories>
 	    <repository>
 	        <id>spring-milestones</id>

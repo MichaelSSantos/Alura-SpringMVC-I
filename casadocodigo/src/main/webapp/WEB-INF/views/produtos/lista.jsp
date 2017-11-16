@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -27,6 +29,20 @@
 					<ul class="nav navbar-nav">
 						<li><a href="${s:mvcUrl('PC#listar').build() }">Lista de Produtos</a></li>
 						<li><a href="${s:mvcUrl('PC#form').build() }">Cadastro de Produtos</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<%-- Recupera dados do usuário atualmente logado. --%>
+							<%-- <a href="#"><security:authentication property="principal.username"/></a> --%>
+							<a href="#">
+								<!-- O usuário está disponível em uma variável -->
+								<security:authentication property="principal" var="usuario" />
+								Usuário: ${usuario.nome}
+							</a>
+						</li>
+						<li>
+							<a href="/casadocodigo/logout">Sair</a>
+						</li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div>

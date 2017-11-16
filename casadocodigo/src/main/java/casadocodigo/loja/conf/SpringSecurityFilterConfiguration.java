@@ -3,10 +3,9 @@ package casadocodigo.loja.conf;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 /**
- * Filtro que inicializa o serviço do Spring Security.
+ * Classe responsável por inicializar o filtro de segurança.
+ * Atenção: Esta classe apenas inicializa o filtro de segurança, mas não o configura.
  */
-public class SpringSecurityFilterConfiguration extends AbstractSecurityWebApplicationInitializer{
+public class SpringSecurityFilterConfiguration extends AbstractSecurityWebApplicationInitializer {
 
-	
-	
 }
