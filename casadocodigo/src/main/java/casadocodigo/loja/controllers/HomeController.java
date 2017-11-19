@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
@@ -50,11 +52,6 @@ public class HomeController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("/teste")
-	public String teste() {
-		return "teste";
-	}
-	
 	@RequestMapping("/teste/detalhe/{id}")
 	public Callable<ModelAndView> detalheTeste(@PathVariable("id") Integer id) {
 		
@@ -73,6 +70,7 @@ public class HomeController {
 			
 	}
 	
+	@Transactional
 	@ResponseBody//Retorna um JSON
 	@RequestMapping("/url-GUP-qlickl468412fefdx2723e")
 	public String urlGUP() {
