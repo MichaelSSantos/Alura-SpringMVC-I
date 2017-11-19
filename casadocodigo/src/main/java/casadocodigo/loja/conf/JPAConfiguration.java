@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -24,7 +25,7 @@ public class JPAConfiguration {
 	 * setJpaVendorAdapter: Especifica o tipo de implementação da JPA
 	 */
 	@Bean //Objeto gerenciado pelo Spring
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties aditionalProperties) {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		//Define o pacote que será gerenciado pelo bean.
 		factoryBean.setPackagesToScan("casadocodigo.loja.models");
@@ -32,12 +33,18 @@ public class JPAConfiguration {
 		
 		/*JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();*/
 		factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-		factoryBean.setJpaProperties(aditionalProperties());
+		factoryBean.setJpaProperties(aditionalProperties);
 		
 		return factoryBean;
 	}
-
-	private Properties aditionalProperties() {
+	
+	/**
+	 * @Profile("dev"): Definição do profile dev  
+	 * para especificar o datasource usado em desenvolvimento.
+	 */
+	@Bean
+	@Profile("dev")
+	public Properties aditionalProperties() {
 		//Propriedades específicas do Hibernate
 		Properties props = new Properties();
 		//Dialeto que o Hibernate vai usar para conversar com o banco de dados, 
@@ -48,8 +55,13 @@ public class JPAConfiguration {
 		return props;
 	}
 
+	/**
+	 * @Profile("dev"): Definição do profile dev  
+	 * para especificar o datasource usado em desenvolvimento.
+	 */
 	@Bean
-	private DataSource dataSource() {
+	@Profile("dev")
+	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setUsername("root");
 		dataSource.setPassword("1234");

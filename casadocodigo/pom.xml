@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.casadocodigo</groupId>
   <artifactId>casadocodigo</artifactId>
@@ -7,6 +9,40 @@
   <packaging>war</packaging>
   <build>
     <finalName>casadocodigo</finalName>
+    <plugins>
+		
+		<plugin>
+			<artifactId>maven-war-plugin</artifactId>
+			<version>2.4</version>
+			<configuration>
+				<failOnMissingWebXml>false</failOnMissingWebXml>
+			</configuration>
+		</plugin>
+		
+		<!-- Plugin necessário para a aplicação ser executada no Heroku -->
+		<plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-dependency-plugin</artifactId>
+		    <version>2.3</version>
+		    <executions>
+		        <execution>
+		            <phase>package</phase>
+		            <goals><goal>copy</goal></goals>
+		            <configuration>
+		                <artifactItems>
+		                    <artifactItem>
+		                        <groupId>com.github.jsimone</groupId>
+		                        <artifactId>webapp-runner</artifactId>
+		                        <version>7.0.57.2</version>
+		                        <destFileName>webapp-runner.jar</destFileName>
+		                    </artifactItem>
+		                </artifactItems>
+		            </configuration>
+		        </execution>
+		    </executions>
+		</plugin>		
+		
+	</plugins>
   </build>
   <properties>
     <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -184,16 +220,20 @@
 		    <version>4.0.0.M2</version>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<!-- E-mail -->
 		<dependency>
 		    <groupId>javax.mail</groupId>
 		    <artifactId>mail</artifactId>
 		    <version>1.5.0-b01</version>
 		</dependency>
-
-
-
 		
+		<!-- Postgressql -->
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>9.4-1201-jdbc41</version>
+		</dependency>
+
 	</dependencies>
 	
 	<!-- Repositório selecionado do Spring para obter o Spring Security -->
