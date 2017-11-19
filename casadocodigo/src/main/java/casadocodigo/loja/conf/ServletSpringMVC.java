@@ -77,12 +77,12 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 	 * 
 	 * === Atenção para o profile dev e prod.
 	 */
-	@Override
+	/*@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		super.onStartup(servletContext);
 		servletContext.addListener(RequestContextListener.class);
 		servletContext.setInitParameter("spring.profiles.active", "dev");
-	}
+	}*/
 	
 	
 }
