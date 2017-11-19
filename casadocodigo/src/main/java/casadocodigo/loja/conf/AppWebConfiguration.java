@@ -65,8 +65,8 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 		//Todos os beans sob controle do Spring ficarão disponíveis como atributos na JSP.
 		//resolver.setExposeContextBeansAsAttributes(true);
 		
-		//Expõe um bean específico, que está sob controle do Spring, na JSP. 
-		//Para que este bean fica disponível na JSP, ele deve estar anotado como @Component.
+		//Expõe um bean específico, que está sob controle do Spring em qualquer JSP. 
+		//Para que este bean fica disponível em qualquer JSP, ele deve estar anotado como @Component.
 		//O padrão é o nome da classe com sua primeira em minúsculo, ou seja, a classe CarrinhoCompras fica carrinhoCompras. 
 		resolver.setExposedContextBeanNames("carrinhoCompras");
 		
@@ -193,8 +193,8 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 	public MailSender mailSender() {
 		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 		mailSender.setHost("smtp.gmail.com");//Definição do servidor de e-mail.
-		mailSender.setUsername("mssantos.k2@gmail.com");
-		mailSender.setPassword("ms1002ph");
+		mailSender.setUsername("xxx@gmail.com");
+		mailSender.setPassword("xxx");
 		mailSender.setPort(587);
 		
 		Properties mailProperties = new Properties();
