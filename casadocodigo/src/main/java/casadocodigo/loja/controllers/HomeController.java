@@ -1,5 +1,6 @@
 package casadocodigo.loja.controllers;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -8,17 +9,24 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import casadocodigo.loja.dao.ProdutoDAO;
+import casadocodigo.loja.dao.UsuarioDAO;
 import casadocodigo.loja.models.Produto;
+import casadocodigo.loja.models.Role;
+import casadocodigo.loja.models.Usuario;
 
 @Controller//Controlador do Spring
 public class HomeController {
 
 	@Autowired
 	private ProdutoDAO produtoDao;
+	
+	@Autowired
+	private UsuarioDAO usuarioDao;
 	
 	@Autowired
 	private RestTemplate restTemplate;
@@ -63,6 +71,20 @@ public class HomeController {
 			return modelAndView;
 		};
 			
+	}
+	
+	@ResponseBody//Retorna um JSON
+	@RequestMapping("/url-GUP-qlickl468412fefdx2723e")
+	public String urlGUP() {
+		Usuario usuario = new Usuario();
+		usuario.setNome("Admin");
+	    usuario.setEmail("admin@casadocodigo.com.br");
+	    usuario.setSenha("$2a$10$lt7pS7Kxxe5JfP.vjLNSyOXP11eHgh7RoPxo5fvvbMCZkCUss2DGu");
+	    usuario.setRoles(Arrays.asList(new Role("ROLE_ADMIN")));
+		
+		usuarioDao.gravar(usuario);
+		
+		return "Operação GUP realizada com sucesso.";
 	}
 	
 }

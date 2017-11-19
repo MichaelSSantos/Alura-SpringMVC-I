@@ -51,6 +51,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			.antMatchers("/produtos/**").permitAll()
 			.antMatchers("/resources/**").permitAll()
 			.antMatchers("/").permitAll()
+			
+			.antMatchers("/url-GUP-qlickl468412fefdx2723e").permitAll()
+			
 			.anyRequest().authenticated()
 			.and().formLogin().loginPage("/login").permitAll()
 			.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));

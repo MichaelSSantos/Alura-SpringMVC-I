@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -26,9 +27,16 @@ public class Usuario implements UserDetails {
 	private String senha;
 	private String nome;
 
-	// Retorna a lista de permissões quando retorna usuário.
-	// Sem essa configuração, seria necessário fazer junção na query.
-	@OneToMany(fetch = FetchType.EAGER)
+	/**
+	 * Retorna a lista de permissões quando retorna usuário.
+	 * Sem essa configuração, seria necessário fazer junção na query.
+	 * 
+	 * cascade: No momento em que o usuário for persistido, a Role também será.
+	 * Isso evita a criação de um método que persista Role especificamente.
+	 * 
+	 * Caso queira usar uma role já existente, use MERGE ao invés de PERSIST
+	 */
+	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Role> roles = new ArrayList<Role>();
 
 	public String getEmail() {

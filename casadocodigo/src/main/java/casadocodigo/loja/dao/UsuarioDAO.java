@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,6 +16,7 @@ import casadocodigo.loja.models.Usuario;
  * Implementa UserDetailService porque é utilizada pelo Spring Security para autenticação.
  */
 @Repository
+@Transactional
 public class UsuarioDAO implements UserDetailsService {
 
 	@PersistenceContext
@@ -35,6 +37,10 @@ public class UsuarioDAO implements UserDetailsService {
 		}
 		
 		return usuarios.get(0);
+	}
+
+	public void gravar(Usuario usuario) {
+		manager.persist(usuario);
 	}
 
 }
