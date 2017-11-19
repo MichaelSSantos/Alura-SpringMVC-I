@@ -2,6 +2,7 @@ package casadocodigo.loja.conf;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.cache.CacheManager;
@@ -15,14 +16,20 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -158,6 +165,45 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
+	}
+	
+	/**
+	 * Configuração de interceptadores do Spring.
+	 */
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		//Adicionado o interceptador de região.
+		registry.addInterceptor(new LocaleChangeInterceptor());
+	}
+	
+	/**
+	 * Após o usuário selecionar o locale, o Spring irá armazenar o locale no cookie do navegador do usuário, 
+	 * para que ele não precise definir novamente o locale ao retornar à aplicação ou mudar de página. 
+	 */
+	@Bean
+	public LocaleResolver localeResolver() {
+		return new CookieLocaleResolver();
+	}	 
+	
+	/**
+	 * Configuração do enviador de e-mail.
+	 * Configura-se as informações do rementente.
+	 */
+	@Bean
+	public MailSender mailSender() {
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		mailSender.setHost("smtp.gmail.com");//Definição do servidor de e-mail.
+		mailSender.setUsername("mssantos.k2@gmail.com");
+		mailSender.setPassword("ms1002ph");
+		mailSender.setPort(587);
+		
+		Properties mailProperties = new Properties();
+		mailProperties.put("mail.smtp.auth", true);//Habilita a autenticação SMTP
+		mailProperties.put("mail.smtp.starttls.enable", true);//Usa o tipo de conexão segura por meio de TLS.
+		mailSender.setJavaMailProperties(mailProperties);
+		
+        return mailSender;
+		
 	}
 	
 }

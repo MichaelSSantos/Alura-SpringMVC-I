@@ -72,6 +72,7 @@
 		<%-- 						<a href="/casadocodigo/produtos/detalhe?id=${produto.id}">${produto.titulo}</a> --%>
 							</td>
 							<td>${produto.descricao}</td>
+							<td>${produto.precos}</td>
 							<td>${produto.paginas}</td>
 						</tr>
 					</c:forEach>

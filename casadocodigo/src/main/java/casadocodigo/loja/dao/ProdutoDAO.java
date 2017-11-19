@@ -21,9 +21,17 @@ public class ProdutoDAO {
 		manager.persist(produto);
 	}
 
+	/**
+	 * Aplicação utilizando o padrão Lazy Initialization, logo não é necesário fazer join fetch nas tabelas relacionais. 
+	 * Atenção! esta abordagem pode ter queda de performance. O ideal é utiliza-la quando não se sabe quantos objetos irão 
+	 * retornar.
+	 */
 	public List<Produto> listar() {
 		//Utilizando TypedQuery e encadeando métodos.
-		return manager.createQuery("select p from Produto p", Produto.class).getResultList();
+		/*return manager.createQuery("select distinct(p) from Produto p join fetch p.precos", 
+				Produto.class).getResultList();*/
+		return manager.createQuery("select distinct(p) from Produto p", 
+				Produto.class).getResultList();
 	}
 
 	public Produto find(Integer id) {

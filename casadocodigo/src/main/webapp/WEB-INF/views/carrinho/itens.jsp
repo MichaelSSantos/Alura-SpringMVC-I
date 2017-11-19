@@ -11,12 +11,12 @@ a ser encontrado está em um diretório local e não remoto como é feito com o atri
 	<!--  O fragmento de código a ser exibido/executado na página deverá estar envolvido pela tag jsp:attribute 
 		  indicando o nome do fragment e deve ainda ser declarado antes da tag jsp:body.
 	 -->
-	<jsp:attribute name="extraScripts">
+	<%-- <jsp:attribute name="extraScripts">
 		<script type="text/javascript" src="/casadocodigo/resources/js/itens.js"></script>
-	</jsp:attribute>
-	
+	</jsp:attribute> --%>
+
 	<!-- As páginas que usarão fragments precisarão envolver o conteúdo das mesmas com a tag jsp:body. -->
-	<jsp:body>
+	<%-- <jsp:body> --%>
 		<section class="container middle">
 			  <h2 id="cart-title">Seu carrinho de compras</h2>
 			  
@@ -78,6 +78,6 @@ a ser encontrado está em um diretório local e não remoto como é feito com o atri
 			  
 			  <h2><a href="http://www.casadocodigo.com.br">Veja todos os livros que publicamos!</a></h2>
 		</section> 
-	</jsp:body>
+	<%-- </jsp:body> --%>
 	
 </tags:pageTemplate>
