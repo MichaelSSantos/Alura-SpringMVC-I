@@ -2,8 +2,8 @@ html {
   color: #333333;
 }
 
-#logo {
-  background: url('/casadocodigo/resources/imagens/cdc-logo.svg') no-repeat;
+#logo > img {
+  /* background: url('/casadocodigo/resources/imagens/cdc-logo.svg') no-repeat; */
   background-size: 210px 61px;
   background-position: center;
   margin: 0;

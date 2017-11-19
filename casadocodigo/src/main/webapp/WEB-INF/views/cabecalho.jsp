@@ -5,12 +5,13 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+	<c:url value="/" var="contextPath" />
+
   <header id="layout-header">
 		<div class="clearfix container">
 		
-		
-<%-- 			<a href="${s:mvcUrl('HC#index').build() }" id="logo"> --%><!-- Outra abordagem -->
-			<a href="/casadocodigo" id="logo">
+			<a href="${s:mvcUrl('HC#index').build() }" id="logo">
+				<img src="${contexPath}resources/imagens/cdc-logo.svg">
 			</a>
 			<div id="header-content">
 				<nav id="main-nav">
